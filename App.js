@@ -1,17 +1,23 @@
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  const [name, setName] = useState("Ashish");
+  const [personInfo, setPersonInfo] = useState({ name: "Ashish", age: 30 });
+
+  const pressButtonHandler = () => {
+    setName("Ashish kodam");
+    setPersonInfo({ name: "Ashish Kodam", age: 27 });
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.blodText}>Hello, World!</Text>
-      </View>
-
-      <View style={styles.body}>
-        <Text>H1</Text>
-        <Text>H2</Text>
-        <Text>H3</Text>
+      <Text>My name is {name}</Text>
+      <Text>
+        Personal data Name:{name} and age:{age}
+      </Text>
+      <View style={styles.buttonContainer}>
+        <Button title="Update state" onPress={pressButtonHandler} />
       </View>
     </View>
   );
@@ -24,15 +30,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  header: {
-    backgroundColor: "pink",
-    padding: 20,
-  },
-  blodText: {
-    fontWeight: "bold",
-  },
-  body: {
-    backgroundColor: "yellow",
-    padding: 20,
+  buttonContainer: {
+    marginTop: 20,
   },
 });
