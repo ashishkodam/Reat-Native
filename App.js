@@ -1,24 +1,29 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
   const [name, setName] = useState("Ashish");
-  const [personInfo, setPersonInfo] = useState({ name: "Ashish", age: 30 });
+  const [age, setAge] = useState("30");
 
-  const pressButtonHandler = () => {
-    setName("Ashish kodam");
-    setPersonInfo({ name: "Ashish Kodam", age: 27 });
-  };
   return (
     <View style={styles.container}>
-      <Text>My name is {name}</Text>
+      <Text>Enter name:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter the name"
+        onChangeText={(val) => setName(val)}
+      />
       <Text>
-        Personal data Name:{name} and age:{age}
+        Name:{name}, age:{age}
       </Text>
-      <View style={styles.buttonContainer}>
-        <Button title="Update state" onPress={pressButtonHandler} />
-      </View>
     </View>
   );
 }
@@ -30,7 +35,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonContainer: {
-    marginTop: 20,
+  input: {
+    borderWidth: 1,
+    borderColor: "#777",
+    padding: 8,
+    margin: 10,
+    width: 200,
   },
 });
